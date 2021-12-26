@@ -1,0 +1,38 @@
+<div>
+    <h1>{{subject}}</h1>
+    <hr>
+    <form (ngSubmit)="checkResult(form.form)" #form="ngForm" action="">
+        <div>
+            <p class="loading" *ngIf="question == null else questions">Загрузка...</p>
+            <ng-template #questions>
+                <div class="question" *ngFor="let item of question">
+                    <p>{{item.id}}. {{item.question}}</p>
+                    <div *ngFor="let temp of item.answers, let i = index">
+                        <input ngModel type="radio" [id]="temp.id" [value]="temp.answer + '|' + temp.correct.toString()" [name]="item.id">
+                        <label [for]="temp.id">{{temp.answer}}</label>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+        <div class="question__button">
+            <a routerLink="/game/victory" >Сдаться и выйти</a>
+            <button type="submit">Закончить тест</button>
+        </div>
+    </form>
+</div>
+
+<div [ngStyle]="{display: result ? 'block' : 'none'}">
+    <app-modal>
+        <div class="loaded" *ngIf="loading else info">
+            <app-loader></app-loader>
+        </div>
+        <ng-template #info>
+            <p>Правильных: {{howManyCorrect}}</p>
+            <p>Неправильных: {{10 - howManyCorrect}}</p>
+            <p>Итоговый балл: {{(howManyCorrect * 10) - ((10 - howManyCorrect) * 3)}}</p>
+            <p>Чтобы более подробное ознакомится с результатами, <a class='link' [routerLink]="'/game/answer/' + subject">перейдите по ссылке</a></p>
+            <a routerLink="/game/victory">Перейти на главную</a>
+    
+        </ng-template>
+    </app-modal>
+</div>

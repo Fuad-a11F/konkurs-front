@@ -1,0 +1,102 @@
+<div class="victory__top">
+    <a class="back" routerLink="/main">
+        <img src="../../../../assets/back.png" width="27" height="27" alt="">
+        <span >Назад</span>
+    </a>
+    <button (click)="this.modal = true">Помощь</button>
+</div>
+
+<hr>
+
+<div class="victory">
+    <div class="victory__grid">
+        <button 
+            [ngStyle]="{'background-color': check('Компьютерная архитектура')}"
+            data-subject="Компьютерная архитектура" (click)="openTestOrResult($event)">
+            Компьютерная архитектура
+        </button>
+        <button 
+            [ngStyle]="{'background-color': check('Операционные системы')}"
+            data-subject="Операционные системы" (click)="openTestOrResult($event)">
+            Операционные системы
+        </button>
+        <button 
+            [ngStyle]="{'background-color': check('Английский')}"
+            data-subject="Английский" (click)="openTestOrResult($event)">
+            Английский
+        </button>
+        <button 
+            [ngStyle]="{'background-color': check('История')}"
+            data-subject="История" (click)="openTestOrResult($event)">
+            История
+        </button>
+        <button 
+            [ngStyle]="{'background-color': check('Математика')}"
+            data-subject="Математика" (click)="openTestOrResult($event)">
+            Математика
+        </button>
+        <button 
+            [ngStyle]="{'background-color': check('Интернет концепции')}"
+            data-subject="Интернет концепции" (click)="openTestOrResult($event)">
+            Интернет концепции
+        </button>
+    </div>
+</div>
+
+
+
+<div [ngStyle]="{'display': modal ? 'block' : 'none'}"> 
+    <app-modal>
+        <div class="modal__row">
+            <button (click)="this.modal = false"><img src="../../../../assets/close_black.svg" width="17" height="17" alt=""></button>
+        </div>
+
+        <hr class="modal__hr">
+
+        <p>
+            Тест-викторина. Ваша задача отвечать на вопросы. Каждый правильный ответ дает вам по 10 баллов, а каждый 
+            неправильный - отнимает 3. Максимальный балл, который вы можете получит составляет 600.
+        </p>
+        <p class="mt-15">
+            <strong>Будьте осторожны!</strong> Для каждого предмета, вы сможете пройти тест <strong>только</strong> один раз.
+            Нажав на кнопку "Начать тест" и не пройдя его, вы получаете 0 баллов.
+        </p>        
+        <p class="mt-15">
+            Если тест вы еще не прошли, то кнопка будет красного цвета и нажав на нее (а также подтвердив начало теста), 
+            вас перекинет на страницу с тестом. Когда тест решен, кнопка будет зеленая и нажав на нее, вы узнаете правильные
+            ответы на вопросы.
+        </p>
+    </app-modal>
+</div>
+
+
+<div [ngStyle]="{'display': modal_warning ? 'block' : 'none'}"> 
+    <app-modal>
+        <div>
+            <p class="title">{{subject}}</p>
+        </div>
+
+        <hr>
+
+        <div>
+            <p class="label">Важно!!!</p>
+            <p class="text">
+                Один важный момент: как уже говорилось, тест можно проходить только один раз, если вы сейчас нажмете
+                кнопку <strong>начать</strong>, выйти уже будет нельзя, то есть вы уже будете должны пройти все до конца
+                или же получите 0 баллов.   
+            </p>
+        </div>
+
+        <p *ngIf="subject === 'Английский'">
+            <strong>
+                Вопросы по английскому будут не только те, которые мы прошли в колледже, т.к. предполагается, что вы
+                должны помнить школьный курс.
+            </strong>
+        </p>
+
+        <div class="button__row">
+            <button (click)="this.modal_warning = false">Пройти потом</button>
+            <button (click)="beginTest()">Начать тест</button>
+        </div>
+    </app-modal>
+</div>

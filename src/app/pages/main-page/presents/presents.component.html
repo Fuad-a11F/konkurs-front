@@ -1,0 +1,79 @@
+<div class="loading" *ngIf="loading">
+    <app-loader></app-loader>
+</div>
+
+<div *ngIf="!loading">
+    <div class="present">
+        <h1>Выбор подарка!</h1>
+        <p>Участник, который будет на последнем месте, получит в качестве утешительного приза плитку шоколада.</p>
+        <p>Дальше все интереснее.</p>
+        <p>
+            Участник, который будет на первом месте получит сертификат (который нафиг никому не сдался). 
+        </p>
+        <p>
+            Участник, который будет на первом, втором и третьем местах, могут сами выбрать приз. Стоит заметить, что
+            по ценности приз будет один. То есть приз для первого места и приз для третьего места по ценности будут плюс-минус
+            равны. Места - тут просто условности.
+        </p>
+        <p>
+            Ниже находится форма, для выбора приза. Вы можете либо выбрать что-то из предложенного, либо предложить свой вариант.
+            Только, если будете писать свой вариант, пожалуйста, пишите что-то реальное.
+        </p>
+        <p>
+            Также вы можете не заполнять форму вообще. Тогда я приму решение сам.
+        </p>
+        <p>
+            Если вы заполните форму, но впоследствии решите изменить приз - можно будет отменить и заполнить заново.
+        </p>
+        <p>
+            Приз, который вы тут выберете никто не увидит и не узнает. Его буду знать только я.
+        </p>
+        <div *ngIf="!isPresent === true" class="present__row">
+            <form (ngSubmit)="choosePresent(form.form)" #form="ngForm" action="">
+                <div class="present__grid">
+
+                    <div *ngFor="let item of present_page">
+                        <div>
+                            <label [for]="item.picture"><img width="80" height="70" [src]="path(item.picture)" alt=""></label>
+                        </div>
+                        <input required ngModel type="radio" [value]="item.title" name="present" [id]="item.picture">
+                        <label [for]="item.picture">{{item.title}}</label>
+                    </div>
+                </div>
+                <div class="button__row">
+                    <button type="button" (click)="prev()" [disabled]="presents_page_number == 0">
+                        <img width="30" height="30" [src]="presents_page_number == 0 ? '../../../../assets/left.svg' : '../../../../assets/left_active.svg'" alt="">
+                    </button>
+                    <button type="button" (click)="next()" [disabled]="checkDisabled()">
+                        <img width="30" height="30" [src]="checkDisabled() ? '../../../../assets/right.svg' : '../../../../assets/right_active.svg'" alt="">
+                    </button>
+                </div>
+                <app-button [disabled]='!form.valid || btn_loading_2'>{{btn_loading_2 ? 'Идет отправка на сервер...' : 'Сделать свой выбор'}}</app-button>
+            </form>
+            <div class="present__form-2">
+                <form (ngSubmit)="customPresent(forms.form)" #forms="ngForm" action="">
+                    <textarea required ngModel name="customPresentText" id="" cols="30" rows="10" placeholder="Напишите свое предложение для приза."></textarea>
+                    <app-button [disabled]='!forms.valid || btn_loading_1'>{{btn_loading_1 ? 'Идет отправка на сервер...' : 'Отправить свой вариант'}}</app-button>
+                </form>
+                <div *ngIf="checkLeaveReview == false">
+                    <div [ngStyle]="{display: modal_help == 'Yes' ? 'flex' : 'none'}" class="modal__help">
+                        <p>Ребят, оставьте, пожалуйста отзыв о сайте. Напишите, что думаете</p>
+                        <button (click)="modalOff()">Обязательно оставлю позже</button>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+        <div class="already_choosen" *ngIf="isPresent === true">
+            <p>Уже выбрано!</p>
+            <app-button (click)="deleteAndChooseAgain()" [disabled]='false || btn_loading_3'>{{btn_loading_3 ? 'Идет отмена...' : 'Отменить и сделать выбор снова'}}</app-button>
+        </div>
+    </div>
+    
+    <div class="label" [ngStyle]="{'display': send_label ? 'block' : 'none'}">
+        <app-label type="success">
+            <button (click)="close()"><img width="17" height="17" src="../../../../assets/close.svg" alt=""></button>
+            {{send_label_text}}
+        </app-label>
+    </div> 
+</div>

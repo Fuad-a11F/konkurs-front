@@ -1,0 +1,10 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+	<title>1486348526-arrow-back-backwards-repeat-previous_80453-svg</title>
+	<defs>
+		<image  width="45" height="50" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAyAQMAAADyVMCXAAAAAXNSR0IB2cksfwAAAAZQTFRFAAAAfHx8IrUjFgAAAAJ0Uk5TAP9bkSK1AAAAfklEQVR4nFWQQQ6AIBADIRw48gSe4tPkaT7FJ3D0YFyl7apwYJJN2802hPE6/nQAmajECkQDElGIhTAgEpmoZh0K26CwNsx2weyKfcRD8ZiN5pMKmaVoyLjCBw0lkUF2hSnaF2ltenM84KfJ0yk6zM8sUwUqRPV4WapORYZ+A/wxfL/uKdHKAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<use id="Background" href="#img1" x="27" y="25" />
+</svg>

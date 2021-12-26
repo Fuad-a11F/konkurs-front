@@ -1,0 +1,125 @@
+.help {
+    position: relative;
+
+
+    input {
+        visibility: hidden;
+    }
+
+    label {
+        border: 1px solid black;
+        padding: 5px 10px 5px 30px;
+        background-color: gray;
+        display: block;
+        font-weight: 900;
+        cursor: pointer;
+    }    
+
+    div {
+        border: 1px solid black;
+        border-top: none;
+        border-bottom: none;
+        overflow: hidden;
+        transition: 1s;
+        height: 0;
+        padding: 0px 20px;
+    }
+
+    p {
+        margin-bottom: 10px;
+        margin-top: 5px;
+    }
+
+    table {
+        margin-bottom: 10px;
+        border-collapse: collapse;
+
+        td {
+            padding: 3px;
+        }
+
+        th {
+            padding: 3px;
+        }
+    }
+}
+
+.player {
+    width: 80%;
+    text-align: left;
+}
+
+.position {
+    text-align: left;
+}
+
+.ball {
+    text-align: left;
+    width: 9%;
+}
+
+tr:nth-child(1) {
+    background-color: rgb(71, 21, 50);
+    color: white
+}
+
+tr:nth-child(2n) {
+    background-color: lightgrey;
+}
+
+label:before {
+    content: '+';
+    font-size: 22px;
+    position: absolute;
+    color: white;
+    top: 19px;
+    left: 14px
+}
+
+.help input:checked + label + div {
+    height: auto;
+    border-bottom: 1px solid black;
+}
+
+.help input:checked + label:before {
+    content: '-';
+}
+
+.table {
+    tr{
+        &:nth-child(2), &:nth-child(3), &:nth-child(4), &:nth-child(8) {
+            background-color: rgb(26, 247, 26);
+        }
+    }
+}
+
+.formula {
+    position: relative;
+    top: -7px
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.new {
+    
+    label {
+        background-color: red;
+        color: white;
+    }
+
+    p {
+        font-weight: 500;
+        font-size: 16px;
+    }
+
+}
+
+.citate {
+    font-style: italic;
+    font-size: 17px;
+    border-left: 3px solid yellow;
+    padding-left: 10px;
+    margin-left: 30px;
+}

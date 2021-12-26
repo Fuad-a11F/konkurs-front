@@ -1,0 +1,111 @@
+.sitebar {
+    &__link {
+        color: black;
+        background-color: lightgrey;
+        display: block;
+        text-decoration: none;
+        padding: 8px 0 8px 20px;
+
+        @media (max-width: 992px) {
+            padding-left: 10px;
+            font-size: 14px;
+        }
+    }
+
+    &__menu {
+        @media (max-width: 767px) {
+            margin-top: 37px;
+        }
+    }
+
+    &__wripper {
+        min-height: 100vh;
+        background-color: red;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; 
+        position: relative;
+
+        @media (max-width: 767px) {
+            position: absolute;
+            z-index: 10;
+            width: 200px;
+            transform: translateX(-100%);
+            transition: .6s;
+        }
+    }
+
+    button {
+        width: 100%;
+        outline: none;
+        border: none;
+        text-align: left;
+        font-family: inherit;
+           
+        @media (max-width: 992px) {
+            font-size: 14px;
+        }
+    }
+
+}
+
+.active-link a {
+    background-color: yellow;
+}
+
+.open {
+    position: fixed;
+    top: 6px;
+    left: 7px;
+    z-index: 10;
+    display: none;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+           
+    @media (max-width: 767px) {
+        display: block;
+    }
+
+}
+
+
+.row {
+    display: flex;
+        
+    @media (max-width: 767px) {
+        display: block;
+    }
+}
+
+.main {
+    flex: 1 1 75%;
+    padding: 0 80px;
+    position: relative;
+    max-height: 100vh;
+    overflow: auto;
+
+    @media (max-width: 767px) {
+        position: static
+    }
+
+    @media (max-width: 1100px) {
+        padding: 0 40px
+    }
+}
+
+.sitebar {
+    flex: 1 1 25%;
+}
+
+.space-between {
+    background-color: transparent;
+    position: relative;
+
+    img {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+    }
+}

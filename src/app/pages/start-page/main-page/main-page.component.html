@@ -1,0 +1,10 @@
+<video #video (canplay)="load()" src="../../../../assets/НОВЫЙ ГОД К НАМ ИДЁТ! ❆ Новогодние песни ❆ С Новым 2019 Годом!.mp4" muted loop></video> 
+<div class="button">
+    <button [ngStyle]="{display: loaded ? 'block' : 'none'}" (click)="play()">
+        <img src="../../../../assets/icons8-play-30.png" alt="">
+    </button>
+</div> 
+
+<div class="loading">
+    <app-loader></app-loader>
+</div>

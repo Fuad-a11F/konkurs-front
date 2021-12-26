@@ -1,0 +1,50 @@
+<button (click)="exit()">Выход</button>
+
+<div class="score">
+    <div class="score__table">
+        <table>
+            <tr>
+                <th class="position">Номер</th>
+                <th class="player">Игрок</th>
+                <th class="ball">Балл</th>
+            </tr>       
+            <tr *ngFor="let item of players, let i = index" [ngClass]="{'zero-ball': item.ball === 0}">
+                <td *ngIf="i === 0">{{i + 1}} <img src="../../../../assets/first.png" width="20" height="20" alt=""></td>
+                <td *ngIf="i === 1">{{i + 1}} <img src="../../../../assets/second.png" width="20" height="20" alt=""></td>
+                <td *ngIf="i === 2">{{i + 1}} <img src="../../../../assets/third.png" width="20" height="20" alt=""></td>
+                <td *ngIf="i > 2">{{i + 1}} </td>
+                <td>{{item.login}} ({{item.name}}) {{!item.isShowName ? 'Имя видно' : 'Имя скрыто'}}</td>
+                <td>{{item.ball}}</td>
+            </tr>            
+        </table>
+    </div>
+</div>
+
+<div class="admin">
+    <div class="admin__button">
+        <div *ngFor="let item of players">
+            <button (click)="getInfoUser(item.name)">{{item.name}}</button>
+        </div>
+    </div>
+    <div class="admin__info">
+        <div *ngIf="!player.hasOwnProperty('id') else info">Не один из участников не выбран!</div>
+
+        <ng-template #info>
+            <div class="admin__row">
+                <div>
+                    <p>{{player.name}}</p>
+                    <p>Баллов: {{player.ball}}</p>
+                </div>
+    
+                <p>{{getPresent()}}</p>
+            </div>
+           
+        </ng-template>
+    </div>
+</div>
+
+<div class="buttons">
+    <button (click)="startConsurs()">Старт конкурса</button>
+    <button (click)="openFortune()">Открыть рулетку</button>
+    <button (click)="finishConsurs()">Конец конкурса</button>
+</div>

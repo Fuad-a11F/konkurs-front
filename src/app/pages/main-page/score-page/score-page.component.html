@@ -1,0 +1,31 @@
+<div class="loading" *ngIf="loading">
+    <app-loader></app-loader>
+</div>
+
+<div *ngIf="!loading">
+    <div class="score">
+        <div>
+            <p>Всего участников: {{countUser}}</p>
+            <a routerLink="/main/score/wins">Увидеть список победителей</a>
+        </div>
+        <hr>
+    </div>
+</div>
+
+<div class="score__table">
+    <table>
+        <tr>
+            <th class="position">Номер</th>
+            <th class="player">Игрок</th>
+            <th class="ball">Балл</th>
+        </tr>       
+        <tr *ngFor="let item of players, let i = index" [ngClass]="{'zero-ball': item.ball === 0}">
+            <td *ngIf="i === 0">{{i + 1}} <img src="../../../../assets/first.png" width="20" height="20" alt=""></td>
+            <td *ngIf="i === 1">{{i + 1}} <img src="../../../../assets/second.png" width="20" height="20" alt=""></td>
+            <td *ngIf="i === 2">{{i + 1}} <img src="../../../../assets/third.png" width="20" height="20" alt=""></td>
+            <td *ngIf="i > 2">{{i + 1}} </td>
+            <td>{{item.login}} ({{!item.isShowName ? item.name : 'Анонимно'}})</td>
+            <td>{{item.ball}}</td>
+        </tr>            
+    </table>
+</div>

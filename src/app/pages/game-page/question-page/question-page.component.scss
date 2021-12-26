@@ -1,0 +1,61 @@
+h1 {
+    text-align: center;
+    margin: 10px 0;
+}
+
+hr {
+    margin-bottom: 20px;
+}
+
+.question {
+    font-size: 17px;
+    margin-bottom: 12px;
+
+    div {
+        position: relative;
+        left: 14px;
+
+        label {
+            position: relative;
+            left: 4px;
+        }
+    }
+
+    &__button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 30px;
+    
+        button {
+            margin: 30px 10px
+        }
+    }
+}
+
+.loading {
+    text-align: center;
+    font-size: 28px;
+    margin: 20px 0;
+}
+
+a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: black
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.link {
+    color: blue;
+}
+
+.loaded {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}

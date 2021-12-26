@@ -1,0 +1,26 @@
+.label {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 20px;
+    padding-right: 32px;
+    background-color: green;
+    border-radius: 6px;
+    color: white;
+    font-size: 17px;
+    animation: appear 1.3s ease forwards;
+}
+
+@keyframes appear {
+    0% {
+        transform: translateX(120%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.none {
+    display: none;
+}

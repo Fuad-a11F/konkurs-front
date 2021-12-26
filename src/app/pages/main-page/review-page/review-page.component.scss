@@ -1,0 +1,74 @@
+.review {
+    h1 {
+        margin-bottom: 10px;
+    }
+
+    textarea {
+        width: 100%;
+        resize: vertical; 
+        font-size: 17px;
+    }
+
+    hr {
+        margin: 14px 0
+    }
+
+    &__comment {
+        display: grid;
+        grid-template-columns: 60px 1fr;
+        margin-bottom: 10px;
+        
+        img {
+            border-radius: 50%;
+            border: 1px solid
+        }
+    }
+
+    &__warning {
+        margin: 8px 0;
+        font-size: 14px;
+    }
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.name {
+    font-weight: 600;
+    margin-bottom: 7px;
+    position: relative;
+    top: 3px
+}
+
+.leave {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+
+.loading {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+
+.label {
+    button {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        position: absolute;
+        top: 8px;
+        right: 4px;
+        cursor: pointer;
+    }
+}
+
+.already_leave {
+    margin: 20px 0;
+    text-align: center;
+    font-size: 22px;
+}

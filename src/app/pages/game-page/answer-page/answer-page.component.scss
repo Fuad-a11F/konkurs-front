@@ -1,0 +1,71 @@
+.victory {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+
+        button {
+            position: relative;
+            top: 4px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+}
+
+.back {
+    color: black;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    font-size: 32px;
+    margin: 5px 0;
+
+    span {
+        margin-left: 11px;
+    }
+}
+
+h1 {
+    text-align: center;
+    margin: 10px 0 30px 0;
+}
+
+.answer {
+    margin-bottom: 16px;
+    font-size: 17px;
+
+    div {
+        position: relative;
+        left: 16px;
+        margin-top: 3px;
+    }
+}
+
+.info {
+    margin-bottom: 30px;
+
+    label {
+        position: relative;
+        left: 4px
+    }
+}
+
+.loading {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 32px;
+}

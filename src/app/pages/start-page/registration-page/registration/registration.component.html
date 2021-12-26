@@ -1,0 +1,84 @@
+<div class="loading" *ngIf="loading">
+    <app-loader></app-loader>
+</div>
+
+<div *ngIf="registerIsCan">
+    <app-auth>
+        <div class="registr">
+            <div class="registr__image">
+                <img #imagePerson src="../../../../../assets/group/None.gif" alt="">
+            </div>
+            <form  #form="ngForm" (ngSubmit)="registerUser(form)">
+                <div>
+                    <select required name='person' ngModel (change)="changePhoto($event)" id="">
+                        <option value="">Выбрать</option>
+                        <option value="Нигяр">Нигяр</option>
+                        <option value="Севинч">Севинч</option>
+                        <option value="Айсель">Айсель</option>
+                        <option value="Руслан">Руслан</option>
+                        <option value="Ильгар">Ильгар</option>
+                        <option value="Эмин Х">Эмин Х</option>
+                        <option value="Эмин Г">Эмин Г</option>
+                        <option value="Самир">Самир</option>
+                        <option value="Адиль">Адиль</option>
+                        <option value="Ферид">Ферид</option>
+                        <option value="Дима">Дима</option>
+                        <option value="Кенан">Кенан</option>
+                        <option value="Абдул">Абдул</option>
+                        <option value="Саид">Саид</option>
+                        <option value="Заур">Заур</option>
+                        <option value="Мурад">Мурад</option>
+                        <option value="Фуад">Фуад(Админ)</option>
+                    </select>
+                </div>
+                <div>
+                    <p class="warning">
+                        *По умолчанию имя будет видно всем участникам, но при желание его можно скрыть в настройках и оставить для показа только логин.
+                        А само имя буду видеть только я.
+                    </p>
+                </div>
+                <div>
+                    <p>Логин*</p>
+                    <input [ngStyle]="{'border': '1px solid gray'}" autocomplete="off" required class="registration__input" name='login' ngModel type="text" placeholder="Придумайте логин">
+                </div>        
+                <div>
+                    <p>Пароль*</p>
+                    <input [ngStyle]="{'border': incorrectPassword ? '2px solid red' : '1px solid gray'}" autocomplete="off" required class="registration__input" name='password1' ngModel type="text" placeholder="Введите пароль">
+                </div>
+                <div>
+                    <p>Повторите пароль*</p>
+                    <input [ngStyle]="{'border': incorrectPassword ? '2px solid red' : '1px solid gray'}" autocomplete="off" required class="registration__input" name='password2' ngModel type="text" placeholder="Повторите пароль">
+                </div>        
+                <div class="code">
+                    <div class="code__wrapper">
+                        <p>Код*</p>
+                        <input [ngStyle]="{'border': incorrectCode ? '2px solid red' : '1px solid gray'}" autocomplete="off" required class="code__input" type="text" name='code' ngModel placeholder="Код">
+                        <span>?</span>
+                        <div>
+                            Это тот самый код, который я каждому кину в личку.
+                        </div>
+                    </div>
+                    <div class="code__column">
+                        <p>Кто вы?*</p>
+                        <select required class="who_are" name='type' [(ngModel)]='type' type="text" [disabled]="hasAdmin">
+                            <option value="Участник">Участник</option>
+                            <option value="Админ">Админ</option>
+                        </select>
+                    </div>
+                </div>
+                <app-button [isLoading]="loading" [disabled]="!form.valid || btn_loading" >{{btn_loading ? 'Идет регистрация...' : 'Зарегистрироваться'}}</app-button>
+            </form>    
+        </div>
+    </app-auth>
+</div>
+
+<div class="finish-register" *ngIf="registerIsCan == false">
+    <p>К сожалению, регистрация уже закончилась.</p>
+</div>
+
+<div class='label' *ngIf="label && label_text.type === 'error'">
+    <app-label type="error">
+        <button (click)="close()"><img src="../../../assets/close.svg" width="14" height="14" alt=""></button>
+        {{label_text.text}}
+    </app-label>
+</div>

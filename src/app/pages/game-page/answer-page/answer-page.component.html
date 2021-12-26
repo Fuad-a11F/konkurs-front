@@ -1,0 +1,33 @@
+<div class="victory__top">
+    <a class="back" routerLink="/game/victory">
+        <img src="../../../../assets/back.png" width="27" height="27" alt="">
+        <span >Назад</span>
+    </a>
+</div>
+
+<hr>
+
+<div class="loading" *ngIf="loading else answer">
+    Загрузка...
+</div>
+
+<ng-template #answer>
+    <div>
+        <h1>{{subject}}</h1>
+        <div class="info">
+            <p>Всего правильных: {{getCorrect()}}</p>
+            <p>Всего неправильных: {{getIncorrect()}}</p>
+            <p>Всего баллов: {{getBall()}}</p>
+            <input [(ngModel)]="color" type="checkbox" id="color">
+            <label for="color">Выделение цветом</label>
+        </div>
+    
+        <div class="answer" *ngFor="let item of question">
+            <p>{{item.id}}. {{item.question}}</p>
+            <div *ngFor="let temp of item.answers">
+                <p *ngIf="temp.correct"> <strong>Правильный ответ:</strong> {{temp.answer}}</p>
+                <p *ngIf="temp.correct"> <strong [ngStyle]="{'background-color': getColor(temp.answer, item.id)}">Ваш ответ:</strong> {{getMyAnswer(item.id)}}</p>
+            </div>
+        </div>
+    </div>
+</ng-template>

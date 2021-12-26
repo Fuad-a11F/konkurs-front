@@ -1,0 +1,15 @@
+<app-auth>
+    <div>
+        <form #form="ngForm" (ngSubmit)="login(form)" >
+            <input type="text" autocomplete="off" required ngModel name="password" placeholder="Введите пароль">
+            <app-button [disabled]="!form.valid || btn_loading">{{btn_loading ? 'Идет вход...' : 'Войти'}}</app-button>
+        </form>
+    </div>
+</app-auth>
+
+<div class='label' [ngStyle]="{'display': label_error ? 'block' : 'none'}">
+    <app-label type='error'>
+        <button (click)="close()"><img src="../../../assets/close.svg" width="14" height="14" alt=""></button>
+        Не удается найти пользователя!
+    </app-label>
+</div>

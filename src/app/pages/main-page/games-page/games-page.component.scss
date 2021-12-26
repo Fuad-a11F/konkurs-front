@@ -1,0 +1,111 @@
+.buttons a, .buttons p {
+    text-decoration: none;
+    height: auto;
+    background-color: rgb(206, 206, 206);
+    border: 1px solid black;
+    padding: 18px;
+    font-size: 26px;
+    color: red;
+    margin-top: 30px;
+    max-height: 300px;
+    cursor: pointer;
+}
+
+.link__info {
+    color: black;
+    text-align: left;
+    margin-top: 4px;
+    font-size: 14px;
+}
+
+.link {
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+a:hover .link, p:hover .link {
+    text-decoration: underline;
+}
+
+div {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+
+    @media (max-width: 676px) {
+        grid-template-columns: 1fr
+    }
+}
+
+.wrapper {
+
+    display: flex;
+    flex-direction: column;
+    width: 160px;
+    padding: 2px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+   
+}
+
+span {
+    overflow: hidden;
+}
+
+img {
+    max-height: 100%;
+    width: 100%;
+    object-fit: cover;
+
+}
+
+.begin-game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 26px;
+}
+
+.loading {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.disable {
+    color: black;
+    letter-spacing: 2px;
+}
+
+.available {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+ 
+    button {
+        background-color: transparent;
+        outline: none;
+        border: none;
+        cursor: pointer;
+
+        img {
+            display: block;
+        }
+    }
+}
+
+.modal__text {
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.loaded {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}

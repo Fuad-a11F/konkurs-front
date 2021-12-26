@@ -1,0 +1,153 @@
+
+<div class="profile">
+    <div>
+        <img [src]="userService.user.image" alt="">
+    </div>
+    <div class="profile__info">
+        <h2>{{userService.user.login}}
+            <span class="profile__name">({{userService.user.name}}) </span> 
+        </h2>
+        <p>Количество баллов: {{userService.user.ball}}</p>
+        <p>Место в рейтинге: <span>{{position}}</span><span *ngIf="loading">Загрузка...</span></p>
+    </div>
+</div>
+<hr>
+<div class="profile__row">
+    <div class="profile__column">
+        <h3>Подробная статистика</h3>
+        <div [ngStyle]="{display: modal_help == 'Yes' ? 'flex' : 'none'}" class="modal__help">
+            <p>Нажмите на "Кол-во матчей по кликеру" и "Кол-во пройденных тестов", чтоб увидеть подробную статистику</p>
+            <button (click)="modalOff()">Понятно</button>
+        </div>      
+
+        <div *ngIf="checkLeaveReview == false">
+            <div [ngStyle]="{display: modal_help_2 == 'Yes' ? 'flex' : 'none'}" class="modal__help">
+                <p>Ребят, оставьте, пожалуйста отзыв о сайте. Напишите, что думаете</p>
+                <button (click)="modalOff_2()">Обязательно оставлю позже</button>
+            </div>
+        </div>
+        
+        <div class="none-input">
+            <label for="clicker" (click)="openClicker()" class="profile__detail">
+                <span class="profile__detail-label">Кол-во матчей по кликеру</span>
+                <span>{{getClickerCount()}}</span>
+            </label>
+
+            <input type="checkbox" id="clicker">
+
+            <div *ngIf="clickerShow" class="profile__more" >
+                <div *ngIf="userService.user.clicker.info.length == 0">
+                    <p class="subject none">Еще не сыграна ни одна игра</p>
+                </div>  
+                <div *ngIf="userService.user.clicker.info.length != 0">
+                    <div >
+                        <table border="1">
+                            <tr>
+                                <th>Номер</th>
+                                <th class="ball">Балл</th>
+                            </tr>
+                            <tr *ngFor="let item of clicker_table, let i = index">
+                                <td>{{i + (clicker_tabel_page * 10) + 1}}</td>
+                                <td>{{item.ball}}</td>
+                            </tr>
+                        </table>
+                        <div class="button__row">
+                            <button (click)="prev()" [disabled]="clicker_tabel_page == 0">
+                                <img width="30" height="30" [src]="clicker_tabel_page == 0 ? '../../../../assets/left.svg' : '../../../../assets/left_active.svg'" alt="">
+                            </button>
+                            <button (click)="next()" [disabled]="checkDisabled()">
+                                <img width="30" height="30" [src]="checkDisabled() ? '../../../../assets/right.svg' : '../../../../assets/right_active.svg'" alt="">
+                            </button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>  
+
+        <div class="none-input">
+            <label for="victory"  (click)="openVictory()" class="profile__detail">
+                <span class="profile__detail-label">Кол-во пройденных тестов</span>
+                <span>{{getVictoryCount()}}</span>
+            </label>
+
+            <input type="checkbox" id="victory">
+            
+            <div class="profile__more" *ngIf="victoryShow" >
+                <div *ngIf="userService.user.victory.info.length == 0">
+                    <p class="subject none">Еще не пройден ни один тест</p>
+                </div>                    
+                <div *ngIf="userService.user.victory.info.length != 0">
+                    <div *ngFor="let item of userService.user.victory.info">
+                        <label [for]="item.victory" class="subject">{{item.victory}}</label>
+                        <input type="checkbox" [id]="item.victory">
+                        <div class="subject__menu">
+                            <p>Количество правильных: {{item.correct}}</p>
+                            <p>Количество неправильных: {{10 - item.correct}}</p>
+                            <p>Итоговый балл: {{item.ball}}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="profile__column">
+        <p class="title">Настройки</p>
+        <hr>
+        <div>
+            <span class="label">Чтобы сменить пароль или логин, нужно для начало ввести свой нынешний пароль.</span>
+            <form class="profile__old" action="">
+                <input [ngStyle]="{border: incorrectPassword_2 ? '2px solid red' : '1px solid gray'}" [(ngModel)]="old_password" name="old" type="text" placeholder="Старый пароль" autocomplete="off">
+                <div class="buttons__row">
+                    <app-button (click)="checkPassword()">Проверить</app-button>
+                </div>
+            </form>       
+            <h3>Форма для смены пароля</h3>     
+            <form class="profile__new" action="">
+                <div>
+                    <input [ngStyle]="{border: incorrectPassword_1 ? '2px solid red' : '1px solid gray'}" [(ngModel)]="new_password_1" name="new_1" type="text" [disabled]="disabled" autocomplete="off" placeholder="Новый пароль">
+                </div>
+                <div>
+                    <input [ngStyle]="{border: incorrectPassword_1 ? '2px solid red' : '1px solid gray'}" [(ngModel)]="new_password_2" name="new_2" type="text" [disabled]="disabled" autocomplete="off" placeholder="Повторить новый пароль">
+                </div>  
+                <div class="buttons__row">
+                    <app-button [disabled]="disabled || btn_loading_1" (click)="changePassword()">{{btn_loading_1 ? 'Идет сохранение...' : 'Сохранить'}}</app-button>
+                </div>
+            </form>
+        </div>
+        <div class="mt-30">
+            <h3>Форма для смены логина</h3>
+            <form class="profile__new" action="">
+                <div>
+                    <input [(ngModel)]="new_login" name="login_1" type="text" [disabled]="disabled" autocomplete="off" placeholder="Новый Логин">
+                </div>
+                <div class="buttons__row">
+                    <app-button [disabled]="disabled || btn_loading_2" (click)="changeLogin()">{{btn_loading_2 ? 'Идет сохранение...' : 'Сохранить'}}</app-button>
+                </div>
+            </form>
+        </div>
+        <hr>
+        <div class="anonim">
+            <input type="checkbox" id='show' (change)="changeShow()" [checked]="userService.user.isShowName">
+            <label for="show">Стать "Анонимом"</label>
+            <span class="tip">?</span>
+            <p>
+                Ваше имя не будет видно никому, кроме меня. Мне оно нужно для того, чтобы понять в итоге кто победил.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="label" [ngStyle]="{'display': error_label ? 'block' : 'none'}">
+    <app-label type="error">
+        <button (click)="close()"><img width="17" height="17" src="../../../../assets/close.svg" alt=""></button>
+        {{error_label_text}} 
+    </app-label>
+</div>
+
+<div class="label" [ngStyle]="{'display': success_label ? 'block' : 'none'}">
+    <app-label type="success">
+        <button (click)="close()"><img width="17" height="17" src="../../../../assets/close.svg" alt=""></button>
+        {{success_label_text}} 
+    </app-label>
+</div>

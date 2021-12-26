@@ -1,0 +1,99 @@
+.clicker {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__row {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+       
+        button {  
+            height: 140px;
+            width: 270px;
+
+            @media (max-width: 600px) {
+                height: 100px;
+                width: 220px;
+            }
+            @media (max-width: 480px) {
+                height: 70px;
+                width: 160px;
+            }
+        }
+    }
+
+    &__info {
+        text-align: center;
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        min-height: calc(100vh - 70px);
+    }
+
+    span {
+        margin: 20px 0;
+        font-size: 80px;
+    }
+
+    &__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+
+        button {
+            position: relative;
+            top: 4px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    
+}
+
+.back {
+    color: black;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    font-size: 32px;
+    margin: 5px 0;
+
+    span {
+        margin-left: 11px;
+    }
+}
+
+
+.modal__row {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+        background-color: transparent;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        
+        img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}
+
+.rules {
+    margin: 20px 0
+}

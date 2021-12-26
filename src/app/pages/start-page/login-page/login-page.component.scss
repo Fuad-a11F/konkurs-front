@@ -1,0 +1,17 @@
+input {
+    width: calc(100% - 8px);
+    margin-bottom: 10px;
+    height: 25px;
+}
+
+.label {
+    button {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        position: absolute;
+        top: 8px;
+        right: 4px;
+        cursor: pointer;
+    }
+}

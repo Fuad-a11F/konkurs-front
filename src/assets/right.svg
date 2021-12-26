@@ -1,0 +1,10 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+	<title>1486348525-music-forward-front-next-arrow_80457-svg</title>
+	<defs>
+		<image  width="45" height="50" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAyAQMAAADyVMCXAAAAAXNSR0IB2cksfwAAAAZQTFRFAAAAfHx8IrUjFgAAAAJ0Uk5TAP9bkSK1AAAAeElEQVR4nFWQwQ2AIBAENT58WgKl2JY/KY1SLIEnD+IZmc0BfCYhe8Oxy7W08wITEsigAjJmETyggAqa4LYmCGQOMpshMASnZ/5HdgRrFygjQUZQOnSpCAMalyx4IvmzWkIrBR9OfXn/Spm+GccK6lRPGqtTkdT6ARJkgHFEoN2AAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<use id="Background" href="#img1" x="27" y="25" />
+</svg>

@@ -1,0 +1,40 @@
+<div class="clicker__top">
+    <a class="back" routerLink="/main">
+        <img src="../../../../assets/back.png" width="27" height="27" alt="">
+        <span >Назад</span>
+    </a>
+    <button (click)="this.modal = true">Помощь</button>
+</div>
+
+<hr>
+
+<div class="clicker">
+    <div class="clicker__wrapper">
+        <div class="clicker__info">
+            <span>{{count}}</span>
+        </div>
+        <div class="clicker__row">
+            <button [ngStyle]="{'display': !start ? 'none' : 'block'}" (click)="countGame()">Клик</button>
+            <button [ngStyle]="{'display': start ? 'none' : 'block'}" (click)="startGame()">Начать</button>
+            <button (click)="resetGame()">Сброс</button>
+        </div>
+        <div class="clicker__info">
+            <span>{{timeLeft | date:'s:SS'}}</span>
+        </div>
+    </div>
+</div>
+
+<div [ngStyle]="{'display': modal ? 'block' : 'none'}"> 
+    <app-modal>
+        <div class="modal__row">
+            <button (click)="this.modal = false"><img src="../../../../assets/close_black.svg" alt=""></button>
+        </div>
+        <p class="rules">
+            Тут все просто: вы просто играете в кликер. Каждый раунд длится 5 секунд. То количество очков, которое
+            вы наберете делится на 2 и округляется. Это и будет ваш балл. 
+        </p>
+        <p class="rules">
+            Количество игр ограничего: вы сможете сыграть не более 100 партий.
+        </p>
+    </app-modal>
+</div>

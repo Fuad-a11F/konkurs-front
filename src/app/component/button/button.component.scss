@@ -1,0 +1,23 @@
+button {
+    height: 31px;
+    width: 100%;
+    cursor: pointer;
+    background-color: green;
+    border: 1px solid rgb(0, 63, 0);
+    color: white;
+    font-size: 17px;
+}
+
+button:disabled {
+    background-color: rgba(0, 187, 0, 0.555);
+    border: 1px solid rgba(2, 187, 2, 0.822);
+    cursor: not-allowed;
+}
+
+button:hover {
+    background-color: rgb(0, 83, 0);
+}
+
+button:disabled:hover {
+    background-color: rgba(7, 217, 7, 0.555);
+}

@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="sitebar">
+        <div class="sitebar__wripper darkness" [ngStyle]="{transform: visibleMenu ? 'translateX(0)' : 'translateX(-100%)'}">
+            <div *ngIf="view === 'main'" class="sitebar__menu">
+                <div routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" >
+                    <a class="sitebar__link"  routerLink="/main" >Главная</a>
+                </div>        
+                <div routerLinkActive="active-link">
+                    <a class="sitebar__link"  routerLink="/main/score">Таблица</a>
+                </div> 
+                <div routerLinkActive="active-link">
+                    <a class="sitebar__link"  routerLink="/main/profile">Профиль</a>
+                </div>           
+                <div routerLinkActive="active-link" class="space-between">
+                    <a class="sitebar__link" (click)="shown()" routerLink="/main/help">Помощь</a>
+                    <img *ngIf="info()" src="../../../assets/Exclamation-mark-icon_34767.png" width="23" height="23" alt="">
+                </div>                    
+                <div routerLinkActive="active-link">
+                    <a class="sitebar__link"  routerLink="/main/presents">Выбор подарка</a>
+                </div>        
+                <div routerLinkActive="active-link">
+                    <a class="sitebar__link"  routerLink="/main/review">Оставить отзыв</a>
+                </div>            
+                <div routerLinkActive="active-link">
+                    <button class="sitebar__link" (click)="logout()" >Выйти</button>
+                </div> 
+            </div>
+            <div *ngIf="view === 'start'" class="sitebar__menu">
+                <div routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" >
+                    <a class="sitebar__link"  routerLink="/start" >Главная</a>
+                </div>        
+                <div routerLinkActive="active-link">
+                    <a class="sitebar__link"  routerLink="/start/help">Что это?</a>
+                </div>         
+                <div routerLinkActive="active-link">
+                    <a class="sitebar__link"  routerLink="/start/login">Войти</a>
+                </div>        
+                <div routerLinkActive="active-link">
+                    <a class="sitebar__link"  routerLink="/start/registration">Зарегистрироваться</a>
+                </div>
+            </div>    
+            
+        </div>
+    </div>
+    <div class="main">  
+        <ng-content></ng-content>
+    </div>
+</div>
+
+<button (click)="openMenu()" class="open"><img width="23" height="23" src="../../../assets/lines_menu_burger_icon_123889.svg" alt=""></button>     

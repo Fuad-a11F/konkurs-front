@@ -1,0 +1,46 @@
+<div class="review">
+    <div *ngIf="checkLeaveReview == false">
+        <h1>Оставить отзыв о сайте</h1>
+        <form (ngSubmit)="leaveReview(form.form)" #form="ngForm" action="">
+            <textarea name="" id="" cols="30" rows="10" ngModel name="reviewText" placeholder="Расскажите свое мнение, что понравилось, а что нет. Минимум 30 символов!"></textarea>
+            <div *ngIf="userService.user.isShowName" class="review__warning">
+                <p>*Обратите внимание, что вы являетесь "Анонимным пользователем", и даже если вы перестанете им быть, отзыв все равно останется анонимным.</p>
+            </div>
+            <p>Если вы оставите отзыв, то удалить его будет нельзя!</p>
+            <div class="leave">
+                <app-button [disabled]="!(form.form.value.reviewText.length > 30 && form.form.value.reviewText.length < 1000) || btn_loading">{{btn_loading ? 'Отправка...' : 'Оставить отзыв'}}</app-button>
+            </div>
+        </form>
+    </div>    
+    <div class="already_leave" *ngIf="checkLeaveReview">
+        <p>Вы уже оставляли отзыв!</p>
+    </div>
+    <hr>
+    <div>
+        <p>Всего отзывов: {{ reviews.length }}</p>
+        <div class="loading" *ngIf="loading"><app-loader></app-loader></div>
+        <div *ngIf="reviews.length != 0" class="mt-30">
+            <div *ngFor="let item of reviews" class="review__comment">
+                <div>
+                    <img *ngIf="item.isShow" src="../../../../assets/group/None.gif" width="50" height="50" alt="">
+                    <img *ngIf="!item.isShow" [src]="item.image" width="50" height="50" alt="">
+                </div>
+                <div>
+                    <p *ngIf="!item.isShow" class="name">{{item.login}} ({{item.name}})</p>
+                    <p *ngIf="item.isShow" class="name">Анонимно</p>
+                    <p class="text">{{item.text}}</p>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="reviews.length == 0 && !loading" class="mt-30">
+            <p>Отзывов нет!</p>
+        </div>
+    </div>
+</div>
+
+<div class="label" [ngStyle]="{'display': success_label ? 'block' : 'none'}">
+    <app-label type="success">
+        <button (click)="close()"><img width="17" height="17" src="../../../../assets/close.svg" alt=""></button>
+        Отзыв отправлен!
+    </app-label>
+</div>

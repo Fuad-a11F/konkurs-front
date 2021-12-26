@@ -1,0 +1,52 @@
+<div class="loading" *ngIf="loading"><app-loader></app-loader></div>
+
+<div class="win">
+    <a routerLink="/main/score">
+        <img src="../../../../assets/back.png" width="27" height="27" alt="">
+        <span>Назад</span>
+    </a>
+    <hr>
+    <div class="none-winnners" *ngIf="winners === 'error'">Победители пока не определены. Конкурс все еще продолжается!</div>
+    <div class="winnres" *ngIf="winners !== 'error' && winners.length != 0">
+        <div class="win__row">
+            <div class="win__image"><img src="../../../../assets/1.jpg" alt=""></div>
+            <div class="win__info"> 
+                - <span (click)="this.modal = true">{{!winners[0].isShowName ? winners[0].name : 'Аноним'}}</span>, общий балл - {{winners[0].ball}}
+                <img src="../../../../assets/12200crown_109565.svg" alt="">
+            </div>
+        </div>        
+        <div class="win__row">
+            <div class="win__image"><img src="../../../../assets/2.jpg" alt=""></div>
+            <div class="win__info"> - {{!winners[1].isShowName ? winners[1].name : 'Аноним'}}, общий балл - {{winners[1].ball}}</div>
+        </div>        
+        <div class="win__row">
+            <div class="win__image"><img src="../../../../assets/3.jpg" alt=""></div>
+            <div class="win__info"> - {{!winners[2].name.isShowName ? winners[2].name : 'Аноним'}}, общий балл - {{winners[2].ball}}</div>
+        </div>        
+        <div class="win__row">
+            <div class="win__text">Утешительный приз</div>
+            <div class="win__info left-30"> - {{!winners[winners.length - 1].isShowName ? winners[winners.length - 1].name : 'Аноним'}}, общий балл - {{winners[winners.length - 1].ball}}</div>
+        </div>
+    </div>
+    <div *ngIf="checkLeaveReview == false">
+        <div [ngStyle]="{display: modal_help == 'Yes' ? 'flex' : 'none'}" class="modal__help">
+            <p>Ребят, оставьте, пожалуйста отзыв о сайте. Напишите, что думаете</p>
+            <button (click)="modalOff()">Обязательно оставлю позже</button>
+        </div>
+    </div>
+</div>
+
+
+
+<div [ngStyle]="{display: modal ? 'block' : 'none'}">
+    <app-modal>
+        <div class="modal__row">
+            <button (click)="this.modal = false"><img src="../../../../assets/close_black.svg" width="17" height="17" alt=""></button>
+        </div>
+        <p class="text">Для того, чтобы началось скачивание, необходимо ввести пароль от аккаунта!</p>
+        <div class="modal__form">
+            <input type="text" [(ngModel)]="password" placeholder="Введите пароль">
+            <button (click)="download()">Скачать</button>
+        </div>
+    </app-modal>
+</div>
