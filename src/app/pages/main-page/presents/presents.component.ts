@@ -39,7 +39,7 @@ export class PresentsComponent implements OnInit {
             .subscribe((data: any) => {
               this.loading = false
               this.presents = data
-              this.present_page = data.slice(this.present_page, this.present_page + 6)
+              this.present_page = data.slice(this.presents_page_number, this.presents_page_number + 6)
             })
         }
 
@@ -117,9 +117,9 @@ export class PresentsComponent implements OnInit {
         this.loading = true
         this.http.get('http://localhost:5000/api/get_all_present')
           .subscribe((data: any) => {
-            this.loading = false
             this.presents = data
-            this.present_page = data.slice(this.present_page, this.present_page + 6)
+            this.loading = false
+            this.present_page = data.slice(this.presents_page_number, this.presents_page_number + 6)
           })
       })
   }

@@ -148,11 +148,12 @@ label {
     position: relative;
     margin-bottom: 30px;
     margin-top: 30px;
+    display: inline-block;
 
     p {
         position: absolute;
         top: -90px;
-        right: 90px;
+        left: 120px;
         border: 1px solid;
         width: 200px;
         padding: 4px;

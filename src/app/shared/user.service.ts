@@ -91,7 +91,11 @@ export class UserService {
         return this.http.put('http://localhost:5000/api/check_victory_answer', 
                     {form: form.value, id: localStorage.getItem('id'), subject})
             .pipe(tap((data: any) => {
+                console.log(data);
+                
                 this.user.ball -= data.ball
+                this.user.victory.count += 1
+                this.user.victory.ball += data.ball
             }))
     }
 

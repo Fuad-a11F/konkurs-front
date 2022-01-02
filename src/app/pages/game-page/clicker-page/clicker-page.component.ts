@@ -38,7 +38,7 @@ export class ClickerPageComponent implements OnInit {
         this.timeLeft = 5000
         clearTimeout(this.timeInterval)
         this.timeInterval = null
-      }, 5400)
+      }, 5100)
     }
   }
 
