@@ -13,6 +13,13 @@ export class AppComponent implements OnInit {
   loading: any = true
 
   ngOnInit() {    
+    this.http.post('https://fe08-films.herokuapp.com/auth', {}).subscribe((data: any) => {
+      this.http.get('https://fe08-films.herokuapp.com/films', {headers: {"Autorization": "Beare " + data.token }}).subscribe(da => {
+        console.log(da);
+        
+      })
+    })
+
     if (localStorage.getItem('id')) {
       this.userService.getUserAgain(localStorage.getItem('id')!).subscribe(data => {
         this.loading = false
