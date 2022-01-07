@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { API_PATH } from 'src/app/api';
 
 @Component({
   selector: 'app-score-page',
@@ -16,7 +17,7 @@ export class ScorePageComponent implements OnInit {
   loading = true
 
   ngOnInit(): void {
-    this.http.get('http://localhost:5000/api/get_score')
+    this.http.get(`${API_PATH}/api/get_score`)
       .subscribe((data: any) => {
         this.loading = false 
 

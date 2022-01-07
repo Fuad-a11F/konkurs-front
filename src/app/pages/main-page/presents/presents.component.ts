@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { API_PATH } from 'src/app/api';
 import { UserService } from 'src/app/shared/user.service';
 
 @Component({
@@ -30,12 +31,12 @@ export class PresentsComponent implements OnInit {
   presents_page_number = 0
 
   ngOnInit(): void {
-    this.http.get('http://localhost:5000/api/check_present/' + localStorage.getItem('id'))
+    this.http.get(`${API_PATH}/api/check_present/` + localStorage.getItem('id'))
       .subscribe(data => {
         this.isPresent = data
 
         if (!data) {
-          this.http.get('http://localhost:5000/api/get_all_present')
+          this.http.get(`${API_PATH}/api/get_all_present`)
             .subscribe((data: any) => {
               this.loading = false
               this.presents = data
@@ -53,7 +54,7 @@ export class PresentsComponent implements OnInit {
     this.modal_help = localStorage.getItem('review_2')
 
     let params1 = new HttpParams().set('id', this.userService.user.id)
-    this.http.get('http://localhost:5000/api/check_leave_review', {params: params1})
+    this.http.get(`${API_PATH}/api/check_leave_review`, {params: params1})
       .subscribe(data => this.checkLeaveReview = data)
   }
 
@@ -83,7 +84,7 @@ export class PresentsComponent implements OnInit {
   customPresent(form: any) {  
     this.btn_loading_1 = true
 
-    this.http.post('http://localhost:5000/api/add_present', 
+    this.http.post(`${API_PATH}/api/add_present`, 
                                         {present: form.value.customPresentText, user_id: localStorage.getItem('id')})
       .subscribe(() => {
         this.send_label = true
@@ -96,7 +97,7 @@ export class PresentsComponent implements OnInit {
   choosePresent(form: any) {
     this.btn_loading_2 = true
 
-    this.http.post('http://localhost:5000/api/add_present', 
+    this.http.post(`${API_PATH}/api/add_present`, 
                                     {present: form.value.present, user_id: localStorage.getItem('id')})
       .subscribe(() => {
         this.btn_loading_2 = false
@@ -108,14 +109,14 @@ export class PresentsComponent implements OnInit {
 
   deleteAndChooseAgain() {
     this.btn_loading_3 = true
-    this.http.delete('http://localhost:5000/api/delete_present/' + localStorage.getItem('id'))
+    this.http.delete(`${API_PATH}/api/delete_present/` + localStorage.getItem('id'))
       .subscribe(() => {
         this.isPresent = false
         this.btn_loading_3 = false
         this.send_label = true
         this.send_label_text = 'Успешно удалено!'
         this.loading = true
-        this.http.get('http://localhost:5000/api/get_all_present')
+        this.http.get(`${API_PATH}/api/get_all_present`)
           .subscribe((data: any) => {
             this.presents = data
             this.loading = false

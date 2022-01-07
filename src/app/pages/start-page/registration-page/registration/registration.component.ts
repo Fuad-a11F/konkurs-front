@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import PersonType from 'src/PersonCodes';
 import { UserService } from 'src/app/shared/user.service';
 import { Router } from '@angular/router';
+import { API_PATH } from 'src/app/api';
 
 @Component({
   selector: 'app-registration',
@@ -15,8 +16,6 @@ export class RegistrationComponent implements OnInit {
 
   type = 'Участник'
   hasAdmin: boolean = true
-  registerIsCan: any = null
-  loading = true
   incorrectCode = false
   incorrectPassword = false
   btn_loading = false
@@ -25,22 +24,6 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.checkAdmin().subscribe((data: any) => this.hasAdmin = data)
-    this.http.get('http://localhost:5000/api/get_start_state')
-      .subscribe((data: any) => {
-        if (data.start && !data.finish) {
-          this.registerIsCan = !data
-        }
-
-        else if (data.start && data.finish) {
-          this.registerIsCan = false
-        }
-
-        else if (!data.start && !data.finish) {
-          this.registerIsCan = true
-        }
-
-        this.loading = false
-      })
   }
 
   label: any = false
@@ -52,7 +35,7 @@ export class RegistrationComponent implements OnInit {
 
     if ((form.form.value.password1 === form.form.value.password2) && (PersonType[form.form.value.person] === form.form.value.code)) {
       this.btn_loading = true
-      this.http.post('http://localhost:5000/api/register_user', {login: form.form.value.login, 
+      this.http.post(`${API_PATH}/api/register_user`, {login: form.form.value.login, 
                                                                   person: form.form.value.person, 
                                                                   password: form.form.value.password1,
                                                                   image: this.imagePerson.nativeElement.src,

@@ -1,8 +1,4 @@
-<div class="loading" *ngIf="loading">
-    <app-loader></app-loader>
-</div>
 
-<div *ngIf="registerIsCan">
     <app-auth>
         <div class="registr">
             <div class="registr__image">
@@ -66,15 +62,11 @@
                         </select>
                     </div>
                 </div>
-                <app-button [isLoading]="loading" [disabled]="!form.valid || btn_loading" >{{btn_loading ? 'Идет регистрация...' : 'Зарегистрироваться'}}</app-button>
+                <app-button [isLoading]="btn_loading" [disabled]="!form.valid || btn_loading" >{{btn_loading ? 'Идет регистрация...' : 'Зарегистрироваться'}}</app-button>
             </form>    
         </div>
     </app-auth>
-</div>
 
-<div class="finish-register" *ngIf="registerIsCan == false">
-    <p>К сожалению, регистрация уже закончилась.</p>
-</div>
 
 <div class='label' *ngIf="label && label_text.type === 'error'">
     <app-label type="error">

@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { API_PATH } from 'src/app/api';
 import { UserService } from 'src/app/shared/user.service';
 
 @Component({
@@ -22,6 +23,8 @@ export class WinPageComponent implements OnInit {
     this.userService.getWinners().subscribe(data => {
       this.winners = data
       this.loading = false
+      console.log(data);
+      
     }) 
 
     if (!localStorage.getItem('review_3')) {
@@ -31,7 +34,7 @@ export class WinPageComponent implements OnInit {
     this.modal_help = localStorage.getItem('review_3')
 
     let params1 = new HttpParams().set('id', this.userService.user.id)
-    this.http.get('http://localhost:5000/api/check_leave_review', {params: params1})
+    this.http.get(`${API_PATH}/api/check_leave_review`, {params: params1})
       .subscribe(data => this.checkLeaveReview = data)
 
   }
@@ -39,7 +42,7 @@ export class WinPageComponent implements OnInit {
   download() {
     this.checkPassword(this.winners[0].id).subscribe(data => {
       if (data) {
-        window.open(`http://localhost:5000/api/download?name=${this.winners[0].name}`)
+        window.open(`https://api-server-13.herokuapp.com/api/download?name=${this.winners[0].name}`)
       }
     })
   }
@@ -53,7 +56,7 @@ export class WinPageComponent implements OnInit {
 
   checkPassword(id: string) {
     let params = new HttpParams().set('password', this.password).set('id', id)
-    return this.http.get('http://localhost:5000/api/check_password', {params})
+    return this.http.get(`${API_PATH}/api/check_password`, {params})
   }
 
   

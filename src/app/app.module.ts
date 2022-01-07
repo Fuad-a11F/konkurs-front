@@ -9,6 +9,7 @@ import { MainModule } from './pages/main-page/main-page.module';
 import { StartModule } from './pages/start-page/start-page.module';
 import { UserService } from './shared/user.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,7 @@ import { UserService } from './shared/user.service';
     MainModule,
     GameModule,
     AdminModule,
-    SiteBarModule
+    SiteBarModule,
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

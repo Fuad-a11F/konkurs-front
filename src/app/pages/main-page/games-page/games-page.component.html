@@ -15,7 +15,7 @@
     <a routerLink="/game/clicker">
         <span class="wrapper">
             <span class="link">Кликер</span>
-            <span class="link__info">Сыграно игр: {{getClickerLength() ?? 'Загрузка...'}} / 100</span>
+            <span class="link__info">Сыграно игр: {{getClickerLength() ?? 'Загрузка...'}} / 50</span>
             <span class="link__info">Заработано очков: {{getClickerBall() ?? 'Загрузка...'}}</span>
         </span>
     </a>    
@@ -28,51 +28,4 @@
         </span>
     </a>
 
-    <p (click)="openFortuna()">
-        <span class="wrapper">
-            <span class="link">Рулетка</span>
-            <span class="disable">{{userService.user.canFortune === 1 ? 'Доступно!' : 'Недоступно!'}}</span>
-        </span>
-    </p>
-
-</div>
-
-<div *ngIf="open_fortuna">
-    <div *ngIf="userService.user.canFortune">
-        <app-modal>
-            <div class="available">
-                <button (click)="closeFortune(true)"><img src="../../../../assets/close_black.svg" width="18" height="18" alt=""></button>
-            </div>
-            
-            <div class="loaded" *ngIf="loading_modal else info">
-                <app-loader></app-loader>
-            </div>
-
-            <ng-template #info>
-                <p class="modal__text">
-                    Поздравляю! 
-                </p>            
-                <p class="modal__text">
-                    Количество выигранных очков: {{win_ball}}
-                </p>
-                <p class="modal__text">
-                    Скоро рулетка будет доступно вновь! Не пропустите!
-                </p>
-            </ng-template>
-        </app-modal>
-    </div>
-
-    <div  *ngIf="userService.user.canFortune == false">
-        <app-modal>
-            <div class="available">
-                <button (click)="closeFortune(false)"><img src="../../../../assets/close_black.svg" width="18" height="18" alt=""></button>
-            </div>
-            <p class="modal__text">
-                К сожалению, вы уже крутили рулетку, а новая временно недоступна!
-            </p>
-            <p class="modal__text">
-                Проверяйте почаще, скоро обязательно она станет доступна!
-            </p>
-        </app-modal>
-    </div>
 </div>

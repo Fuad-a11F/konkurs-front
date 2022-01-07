@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { API_PATH } from 'src/app/api';
 import { UserService } from 'src/app/shared/user.service';
 
 @Component({
@@ -61,15 +62,13 @@ export class ProfilePageComponent implements OnInit {
       })
 
     let params = new HttpParams().set('id', this.userService.user.id)
-    this.http.get('http://localhost:5000/api/check_leave_review', {params})
+    this.http.get(`${API_PATH}/api/check_leave_review`, {params})
       .subscribe(data => this.checkLeaveReview = data)
   }
 
   openVictory() {
     if (!this.victoryShow) {
-      this.userService.getVictory().subscribe(() => {
-        this.victoryShow = true
-      })
+      this.victoryShow = true
     }
     else {
       this.victoryShow = false
@@ -78,13 +77,11 @@ export class ProfilePageComponent implements OnInit {
 
   openClicker() {
     if (!this.clickerShow) {
-      this.userService.getClicker().subscribe(() => {
         if (this.flag) {
           this.getClickerTable(this.clicker_tabel_page)
           this.flag = false
         }
         this.clickerShow = true
-      })
     }
     else {
       this.clickerShow = false
@@ -93,24 +90,12 @@ export class ProfilePageComponent implements OnInit {
 
   getClickerTable(count: number) {
     if (this.userService.user.clicker) {
-      for (let i = count; i < this.userService.user.clicker.info.length; i++) {
+      for (let i = count; i < this.userService.user.clicker.length; i++) {
         if (i < count + 10) {
-          this.clicker_table.push(this.userService.user.clicker.info[i])
+          this.clicker_table.push(this.userService.user.clicker[i])
         }
       }
     }
-  }
-
-  getClickerCount() {
-    if (Array.isArray(this.userService.user.count))
-      return this.userService.user.clicker.length
-    return this.userService.user.clicker.count
-  }
-
-  getVictoryCount() {
-    if (Array.isArray(this.userService.user.victory))
-      return this.userService.user.victory.length
-    return this.userService.user.victory.count
   }
 
   next() {
@@ -120,7 +105,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   checkDisabled() {
-    if (this.clicker_tabel_page == Math.round(this.userService.user.clicker.info.length / 10)) {
+    if (this.clicker_tabel_page == Math.round(this.userService.user.clicker.length / 10)) {
       return true
     }
 
@@ -144,7 +129,7 @@ export class ProfilePageComponent implements OnInit {
   }
   
   changeShow() {
-    this.userService.changeIsShow(this.userService.user.isShowName).subscribe(data => {
+    this.userService.changeIsShow().subscribe(data => {
       this.userService.user.isShowName = data
       this.success_label = true
       this.error_label_text = ''
@@ -153,75 +138,9 @@ export class ProfilePageComponent implements OnInit {
     })
   }  
 
-  checkPassword() {
-    this.userService.checkPassword(this.old_password).subscribe(data => {
-      if (data) {
-        this.disabled = false
-        this.error_label = false
-        this.error_label_text = ''
-        this.incorrectPassword_2 = false
-      }
-  
-      else {
-        this.incorrectPassword_2 = true
-        this.error_label = true
-        this.error_label_text = 'Пароль неверный!'
-      }
-    })
-  }
-
-  changePassword() {
-    if (this.new_password_1 && this.new_password_2 && (this.new_password_1 === this.new_password_2)) {
-      this.btn_loading_1 = true
-      this.incorrectPassword_1 = false
-
-      this.userService.changePassword(this.new_password_1).subscribe(data => {
-
-        if (data === 'ok') {
-          this.error_label = false
-          this.success_label = true
-          this.error_label_text = ''
-          this.success_label_text = 'Пароль успешно изменен!'
-          localStorage.setItem('password', this.new_password_1)
-          this.new_password_1 = ''
-          this.new_password_2 = ''
-          this.old_password = ''
-          this.disabled = true
-        }
-
-        else {
-          this.error_label = true
-          this.error_label_text = 'Такой пароль уже есть в системе!'
-        }
-      
-        this.btn_loading_1 = false
-      })
-    }
-
-    else {
-      this.incorrectPassword_1 = true
-    }
-  }
-
   close() {
     this.error_label = false
     this.success_label = false
-  }
-  
-  changeLogin() {
-    if (this.new_login) {
-      this.btn_loading_2 = true
-      this.userService.changeLogin(this.new_login).subscribe(() => {
-        this.btn_loading_2 = false
-        this.error_label_text = ''
-        this.success_label = true
-        this.success_label_text = 'Логин успешно изменен!'
-        this.old_password = ''
-        this.new_login = ''
-        this.disabled = true
-      })
-    }
-
   }
 
 }

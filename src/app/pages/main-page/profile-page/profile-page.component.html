@@ -30,16 +30,16 @@
         <div class="none-input">
             <label for="clicker" (click)="openClicker()" class="profile__detail">
                 <span class="profile__detail-label">Кол-во матчей по кликеру</span>
-                <span>{{getClickerCount()}}</span>
+                <span>{{userService.user.clicker.length}}</span>
             </label>
 
             <input type="checkbox" id="clicker">
 
             <div *ngIf="clickerShow" class="profile__more" >
-                <div *ngIf="userService.user.clicker.info.length == 0">
+                <div *ngIf="userService.user.clicker.length == 0">
                     <p class="subject none">Еще не сыграна ни одна игра</p>
                 </div>  
-                <div *ngIf="userService.user.clicker.info.length != 0">
+                <div *ngIf="userService.user.clicker.length != 0">
                     <div >
                         <table border="1">
                             <tr>
@@ -67,17 +67,17 @@
         <div class="none-input">
             <label for="victory"  (click)="openVictory()" class="profile__detail">
                 <span class="profile__detail-label">Кол-во пройденных тестов</span>
-                <span>{{getVictoryCount()}}</span>
+                <span>{{userService.user.victory.length}}</span>
             </label>
 
             <input type="checkbox" id="victory">
             
             <div class="profile__more" *ngIf="victoryShow" >
-                <div *ngIf="userService.user.victory.info.length == 0">
+                <div *ngIf="userService.user.victory.length == 0">
                     <p class="subject none">Еще не пройден ни один тест</p>
                 </div>                    
-                <div *ngIf="userService.user.victory.info.length != 0">
-                    <div *ngFor="let item of userService.user.victory.info">
+                <div *ngIf="userService.user.victory.length != 0">
+                    <div *ngFor="let item of userService.user.victory">
                         <label [for]="item.victory" class="subject">{{item.victory}}</label>
                         <input type="checkbox" [id]="item.victory">
                         <div class="subject__menu">
@@ -93,39 +93,6 @@
     </div>
     <div class="profile__column">
         <p class="title">Настройки</p>
-        <hr>
-        <div>
-            <span class="label">Чтобы сменить пароль или логин, нужно для начало ввести свой нынешний пароль.</span>
-            <form class="profile__old" action="">
-                <input [ngStyle]="{border: incorrectPassword_2 ? '2px solid red' : '1px solid gray'}" [(ngModel)]="old_password" name="old" type="text" placeholder="Старый пароль" autocomplete="off">
-                <div class="buttons__row">
-                    <app-button (click)="checkPassword()">Проверить</app-button>
-                </div>
-            </form>       
-            <h3>Форма для смены пароля</h3>     
-            <form class="profile__new" action="">
-                <div>
-                    <input [ngStyle]="{border: incorrectPassword_1 ? '2px solid red' : '1px solid gray'}" [(ngModel)]="new_password_1" name="new_1" type="text" [disabled]="disabled" autocomplete="off" placeholder="Новый пароль">
-                </div>
-                <div>
-                    <input [ngStyle]="{border: incorrectPassword_1 ? '2px solid red' : '1px solid gray'}" [(ngModel)]="new_password_2" name="new_2" type="text" [disabled]="disabled" autocomplete="off" placeholder="Повторить новый пароль">
-                </div>  
-                <div class="buttons__row">
-                    <app-button [disabled]="disabled || btn_loading_1" (click)="changePassword()">{{btn_loading_1 ? 'Идет сохранение...' : 'Сохранить'}}</app-button>
-                </div>
-            </form>
-        </div>
-        <div class="mt-30">
-            <h3>Форма для смены логина</h3>
-            <form class="profile__new" action="">
-                <div>
-                    <input [(ngModel)]="new_login" name="login_1" type="text" [disabled]="disabled" autocomplete="off" placeholder="Новый Логин">
-                </div>
-                <div class="buttons__row">
-                    <app-button [disabled]="disabled || btn_loading_2" (click)="changeLogin()">{{btn_loading_2 ? 'Идет сохранение...' : 'Сохранить'}}</app-button>
-                </div>
-            </form>
-        </div>
         <hr>
         <div class="anonim">
             <input type="checkbox" id='show' (change)="changeShow()" [checked]="userService.user.isShowName">

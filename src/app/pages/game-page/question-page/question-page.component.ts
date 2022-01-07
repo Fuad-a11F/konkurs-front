@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { API_PATH } from 'src/app/api';
 import { UserService } from 'src/app/shared/user.service';
 
 @Component({
@@ -23,7 +24,7 @@ export class QuestionPageComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.subject = params['subject'].replace('_', ' ');
       let params1 = new HttpParams().set('subject', this.subject)
-      this.http.get('http://localhost:5000/api/get_question', {params: params1})
+      this.http.get(`${API_PATH}/api/get_question`, {params: params1})
         .subscribe(data => this.question = data)
     });
   }

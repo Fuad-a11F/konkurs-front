@@ -37,14 +37,12 @@ export class VictoryPageComponent implements OnInit {
   beginTest() {
     this.userService.addVictory(this.subject).subscribe(() => {
       this.router.navigate([`/game/question/${this.subject.replace(' ', '_')}`])
-      console.log(this.userService.user);
-      
     })
   }
 
   check(subject: string) {    
-    for (let i = 0; i < this.userService.user.victory.info.length; i++) {
-      if (this.userService.user.victory.info[i].victory === subject) {
+    for (let i = 0; i < this.userService.user.victory.length; i++) {
+      if (this.userService.user.victory[i].victory === subject) {
         return 'green'
       }
     }

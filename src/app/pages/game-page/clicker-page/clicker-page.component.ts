@@ -22,7 +22,7 @@ export class ClickerPageComponent implements OnInit {
   }
 
   startGame() {
-    if (this.userService.user.clicker.count < 100) {
+    if (this.userService.user.clicker.length < 50) {
       this.start = true
       this.timeLeft = 5000
   

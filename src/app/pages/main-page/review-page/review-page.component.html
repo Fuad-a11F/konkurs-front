@@ -6,7 +6,8 @@
             <div *ngIf="userService.user.isShowName" class="review__warning">
                 <p>*Обратите внимание, что вы являетесь "Анонимным пользователем", и даже если вы перестанете им быть, отзыв все равно останется анонимным.</p>
             </div>
-            <p>Если вы оставите отзыв, то удалить его будет нельзя!</p>
+            <p class="warning">*Вы можете оставить только один отзыв!</p>
+            <p class="warning">*Если вы его оставите - удалить будет нельзя!</p>
             <div class="leave">
                 <app-button [disabled]="!(form.form.value.reviewText.length > 30 && form.form.value.reviewText.length < 1000) || btn_loading">{{btn_loading ? 'Отправка...' : 'Оставить отзыв'}}</app-button>
             </div>
@@ -22,13 +23,13 @@
         <div *ngIf="reviews.length != 0" class="mt-30">
             <div *ngFor="let item of reviews" class="review__comment">
                 <div>
-                    <img *ngIf="item.isShow" src="../../../../assets/group/None.gif" width="50" height="50" alt="">
-                    <img *ngIf="!item.isShow" [src]="item.image" width="50" height="50" alt="">
+                    <img *ngIf="item.review.isShow" src="../../../../assets/group/None.gif" width="50" height="50" alt="">
+                    <img *ngIf="!item.review.isShow" [src]="item.image" width="50" height="50" alt="">
                 </div>
                 <div>
-                    <p *ngIf="!item.isShow" class="name">{{item.login}} ({{item.name}})</p>
-                    <p *ngIf="item.isShow" class="name">Анонимно</p>
-                    <p class="text">{{item.text}}</p>
+                    <p *ngIf="!item.review.isShow" class="name">{{item.login}} ({{item.name}})</p>
+                    <p *ngIf="item.review.isShow" class="name">Анонимно</p>
+                    <p class="text">{{item.review.text}}</p>
                 </div>
             </div>
         </div>

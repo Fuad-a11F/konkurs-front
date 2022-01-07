@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { API_PATH } from "src/app/api";
 import { UserService } from "src/app/shared/user.service";
 
 
@@ -19,7 +20,7 @@ export class AdminComponent implements OnInit {
 
     ngOnInit() {
         let params = new HttpParams().set('admin', true)
-        this.http.get('http://localhost:5000/api/get_score', {params}).subscribe((data: any) => {
+        this.http.get(`${API_PATH}/api/get_score`, {params}).subscribe((data: any) => {
             this.players = data.data.sort((a: any, b: any) => b.ball - a.ball)
             this.countUser = data.count            
         })
@@ -32,11 +33,11 @@ export class AdminComponent implements OnInit {
 
     getInfoUser(name: string) {
         let params = new HttpParams().set('name', name)
-        this.http.get('http://localhost:5000/api/get_info_user', {params}).subscribe((data: any) => {
+        this.http.get(`${API_PATH}/api/get_info_user`, {params}).subscribe((data: any) => {
             this.player = data
             console.log(this.player);
         })
-        this.http.get('http://localhost:5000/api/get_present', {params}).subscribe(data => this.present = data)
+        this.http.get(`${API_PATH}/api/get_present`, {params}).subscribe(data => this.present = data)
     }
 
     getPresent() {
@@ -46,19 +47,13 @@ export class AdminComponent implements OnInit {
     }
 
     startConsurs() {
-        this.http.put('http://localhost:5000/api/change_start_state', {})
+        this.http.put(`${API_PATH}/api/change_start_state`, {})
             .subscribe()
     }
 
     finishConsurs() {
-        this.http.put('http://localhost:5000/api/change_finish_state', {})
+        this.http.put(`${API_PATH}/api/change_finish_state`, {})
             .subscribe()
     }
-
-    openFortune() {
-        this.http.put('http://localhost:5000/api/fortuna_available', {})
-        .subscribe()
-    }
-
 
 }
