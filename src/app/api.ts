@@ -1,1 +1,1 @@
-export const API_PATH = 'https://api-server-13.herokuapp.com'
+export let API_PATH = 'https://api-server-13.herokuapp.com'
