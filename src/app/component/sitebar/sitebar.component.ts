@@ -5,38 +5,33 @@ import { UserService } from 'src/app/shared/user.service';
 @Component({
   selector: 'app-sitebar',
   templateUrl: './sitebar.component.html',
-  styleUrls: ['./sitebar.component.scss']
+  styleUrls: ['./sitebar.component.scss'],
 })
 export class SitebarComponent implements OnInit {
+  constructor(private router: Router, public userService: UserService) {}
 
-  constructor(private router: Router, public userService: UserService) { }
+  @Input() view: any;
 
-  @Input() view: any
+  @ViewChild('audio') audio: any;
 
-  @ViewChild('audio') audio: any
+  visibleMenu = true;
 
-  visibleMenu = true
-
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   info() {
-    if (localStorage.getItem('info') == 'true') return true
-    return false
+    return localStorage.getItem('info') == 'true';
   }
 
   shown() {
-    localStorage.setItem('info', 'false')
+    localStorage.setItem('info', 'false');
   }
 
   logout() {
-    localStorage.removeItem('id')
-    this.router.navigate(['/start'])
+    localStorage.removeItem('id');
+    this.router.navigate(['/start']);
   }
 
   openMenu() {
-    this.visibleMenu = !this.visibleMenu
+    this.visibleMenu = !this.visibleMenu;
   }
-
 }

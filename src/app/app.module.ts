@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SiteBarModule } from './component/sitebar.module';
@@ -9,12 +10,8 @@ import { MainModule } from './pages/main-page/main-page.module';
 import { StartModule } from './pages/start-page/start-page.module';
 import { UserService } from './shared/user.service';
 
-
 @NgModule({
-  declarations: [
-    AppComponent,
-
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,6 +22,6 @@ import { UserService } from './shared/user.service';
     SiteBarModule,
   ],
   providers: [UserService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
